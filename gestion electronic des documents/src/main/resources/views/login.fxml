@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox>
+            <Label text="Welcome Back" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <TextField promptText="Email"
+                       style="-fx-background-radius: 10; -fx-padding: 10;" />
+    </VBox>
+
+</AnchorPane>
