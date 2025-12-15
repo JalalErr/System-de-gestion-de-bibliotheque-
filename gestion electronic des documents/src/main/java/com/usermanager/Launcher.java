@@ -20,8 +20,8 @@ public class Launcher extends Application{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
 
-        Scene scene = new Scene(loader.load(), 1200, 700);
-        stage.setTitle("Login");
+        Scene scene = new Scene(loader.load(), 600, 400);
+        //stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25"
+            fx:controller="com.usermanager.controller.UserController"
+            xmlns:fx="http://javafx.com/fxml/1"
+
+>
+   <children>
+      <Pane layoutX="188.0" layoutY="28.0" prefHeight="343.0" prefWidth="224.0">
+
+         <children>
+
+            <Label text="Registration Form">
+               <font>
+                  <Font size="28.0" />
+               </font>
+
+            </Label>
+            <Label layoutX="6.0" layoutY="40.0" text="Veuillez vous saisir vos donneés">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+
+            <TextField layoutX="-1.0" layoutY="168.0" prefHeight="25.0" prefWidth="220.0" promptText="Mot de passe" fx:id="password"/>
+
+             <TextField layoutX="-1.0" layoutY="205.0" prefHeight="25.0" prefWidth="220.0" promptText="Confirmation mot de passe" fx:id="Confpassword"/>
+
+             <TextField layoutX="-1.0" layoutY="131.0" prefHeight="25.0" prefWidth="220.0" promptText="nom@exemple.com" fx:id="email"/>
+
+             <TextField layoutX="1.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Nom" fx:id="nom"/>
+
+             <TextField layoutX="117.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Prénom" fx:id="prenom"/>
+
+             <Button layoutX="44.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Envoyer" onAction="#handleSave" />
+
+
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
