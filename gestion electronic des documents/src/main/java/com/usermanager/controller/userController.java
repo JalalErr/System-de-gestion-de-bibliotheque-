@@ -5,8 +5,11 @@ import com.usermanager.model.UserModel;
 import com.usermanager.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class UserController {
 
@@ -50,6 +53,15 @@ public class UserController {
             } catch (Exception e) {
                 //showStatus("✗ Error: " + e.getMessage(), true);
             }
+        }
+
+        public void goregistrationpage(ActionEvent event) throws IOException {
+
+            switchScene.switchScene(event,"/views/registration.fxml", "Registeration Page");
+        }
+
+        public void gologinpage(ActionEvent event) throws IOException {
+            switchScene.switchScene(event, "/views/login.fxml", "Login");
         }
 
 }

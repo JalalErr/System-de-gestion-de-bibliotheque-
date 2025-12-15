@@ -24,7 +24,9 @@ public class UserService {
     }
 
     public UserModel createUser(UserModel user) {
-        validateUser(user);
+        System.out.println("User Service");
+        //validateUser(user);
+        System.out.println("User Service after validation");
 
         if (userDAO.existsByUsername(user.getNom())) {
             throw new DuplicateDataException("Username already exists: " + user.getNom());

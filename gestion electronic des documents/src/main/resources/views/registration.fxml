@@ -30,18 +30,17 @@
                </font>
             </Label>
 
-            <TextField layoutX="-1.0" layoutY="168.0" prefHeight="25.0" prefWidth="220.0" promptText="Mot de passe" fx:id="password"/>
+            <TextField layoutX="-1.0" layoutY="168.0" prefHeight="25.0" prefWidth="220.0" promptText="Mot de passe" fx:id="passwordField"/>
 
-             <TextField layoutX="-1.0" layoutY="205.0" prefHeight="25.0" prefWidth="220.0" promptText="Confirmation mot de passe" fx:id="Confpassword"/>
+             <TextField layoutX="-1.0" layoutY="131.0" prefHeight="25.0" prefWidth="220.0" promptText="nom@exemple.com" fx:id="emailField"/>
 
-             <TextField layoutX="-1.0" layoutY="131.0" prefHeight="25.0" prefWidth="220.0" promptText="nom@exemple.com" fx:id="email"/>
+             <TextField layoutX="1.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Nom" fx:id="nomField"/>
 
-             <TextField layoutX="1.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Nom" fx:id="nom"/>
-
-             <TextField layoutX="117.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Prénom" fx:id="prenom"/>
+             <TextField layoutX="117.0" layoutY="89.0" prefHeight="25.0" prefWidth="103.0" promptText="Prénom" fx:id="prenomField"/>
 
              <Button layoutX="44.0" layoutY="249.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Envoyer" onAction="#handleSave" />
 
+             <Hyperlink layoutX="233.0" layoutY="329.0" text="J'ai déja a un compte" onAction="#gologinpage" />
 
          </children>
       </Pane>

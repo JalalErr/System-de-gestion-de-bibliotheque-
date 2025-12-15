@@ -12,16 +12,23 @@ import java.util.Optional;
 
 public class UserDAOImpl implements UserDAO{
 
-    private static final String INSERT_SQL = "INSERT INTO users (nom, prenom, email, password,role) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_SQL = "INSERT INTO users (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)";
 
     @Override
     public UserModel save(UserModel user) {
+        System.out.printf("UserDAOImpl query execute\n");
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+            System.out.printf("Testing query for execute\n");
 
             setUserParameters(pstmt, user);
+            System.out.printf("User param : \n", pstmt, user);
 
             int affectedRows = pstmt.executeUpdate();
+            System.out.printf("Affecting rows", affectedRows);
+
+            System.out.printf("Testing query after execute\n");
+
             if (affectedRows == 0) {
                 throw new DAOException("Creating user failed, no rows affected");
             }
@@ -67,9 +74,9 @@ public class UserDAOImpl implements UserDAO{
 
     private void setUserParameters(PreparedStatement pstmt, UserModel user) throws SQLException {
         pstmt.setString(1, user.getNom());
-        pstmt.setString(1, user.getPrenom());
-        pstmt.setString(2, user.getEmail());
-        pstmt.setString(3, user.getPassword());
+        pstmt.setString(2, user.getPrenom());
+        pstmt.setString(3, user.getEmail());
+        pstmt.setString(4, user.getPassword());
         pstmt.setString(5, user.getRole().name());
     }
 
