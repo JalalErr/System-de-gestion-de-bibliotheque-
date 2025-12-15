@@ -21,3 +21,18 @@ public class switchScene {
         stage.show();
     }
 }
+
+class SceneManager {
+
+    public static void switchScene(String fxml) {
+        try {
+            Parent root = FXMLLoader.load(
+                    SceneManager.class.getResource("/views/" + fxml));
+            Stage stage = (Stage) Stage.getWindows().get(0);
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+

@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -23,7 +24,12 @@ public class UserController {
         TextField emailField;
         @FXML
         TextField passwordField;
-
+        @FXML
+        private TextField emailField_;
+        @FXML
+        private TextField passwordField_;
+        @FXML
+        private Label errorLabel;
         private UserService userService = new UserService();
 
         public UserController() {
@@ -49,9 +55,31 @@ public class UserController {
                 UserModel user = createUserFromFields();
                 userService.createUser(user);
                 //clearFields();
-                //showStatus("✓ User created successfully", false);
             } catch (Exception e) {
                 //showStatus("✗ Error: " + e.getMessage(), true);
+            }
+        }
+
+        @FXML
+        private void handleLogin() {
+
+            String email = emailField_.getText();
+            String password = passwordField_.getText();
+
+            System.out.println("email: " + email);
+            if (email.isEmpty() || password.isEmpty()) {
+                errorLabel.setText("Veuillez remplir tous les champs");
+                return;
+            }
+                //userService.login(email, password);
+            boolean authenticate = userService.login(email, password);
+
+            if (userService.login(email, password)) {
+                // Redirection vers la page principale
+                SceneManager.switchScene("dashboard.fxml");
+
+            } else {
+                errorLabel.setText("Email ou mot de passe incorrect");
             }
         }
 

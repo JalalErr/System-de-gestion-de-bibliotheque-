@@ -2,6 +2,7 @@ package com.usermanager.service;
 
 import com.usermanager.dao.DAOFactory;
 import com.usermanager.dao.UserDAO;
+import com.usermanager.dao.impl.UserDAOImpl;
 import com.usermanager.exception.DuplicateDataException;
 import com.usermanager.model.UserModel;
 import com.usermanager.model.UserRole;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserDAO userDAO;
+
+
 
     public UserService() {
         this.userDAO = DAOFactory.getInstance().getUserDAO();
@@ -39,6 +42,9 @@ public class UserService {
         return userDAO.save(user);
     }
 
+    public boolean login(String email, String password) {
+        return userDAO.authenticate(email, password);
+    }
 
     public boolean deleteUser(Integer id) {
         return userDAO.delete(id);

@@ -12,22 +12,26 @@ import java.util.Optional;
 
 public class UserDAOImpl implements UserDAO{
 
-    private static final String INSERT_SQL = "INSERT INTO users (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_SQL =
+            "INSERT INTO users (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)";
+
+    private static final String AUTH_SQL =
+            "SELECT password FROM users WHERE email = ?";
 
     @Override
     public UserModel save(UserModel user) {
-        System.out.printf("UserDAOImpl query execute\n");
+
+        System.out.println("UserDAOImpl query execute\n");
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            System.out.printf("Testing query for execute\n");
+            System.out.println("Testing query for execute\n");
 
             setUserParameters(pstmt, user);
-            System.out.printf("User param : \n", pstmt, user);
 
             int affectedRows = pstmt.executeUpdate();
-            System.out.printf("Affecting rows", affectedRows);
+            System.out.printf("Affecting rows \n", affectedRows);
 
-            System.out.printf("Testing query after execute\n");
+            System.out.println("Testing query after execute\n");
 
             if (affectedRows == 0) {
                 throw new DAOException("Creating user failed, no rows affected");
@@ -44,6 +48,28 @@ public class UserDAOImpl implements UserDAO{
 
         } catch (SQLException e) {
             throw new DAOException("Error saving user: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public boolean authenticate(String email, String password) {
+
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(AUTH_SQL)) {
+
+            pstmt.setString(1, email);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+
+                if (rs.next()) {
+                    String storedPassword = rs.getString("password");
+                    return storedPassword.equals(password);
+                }
+                return false;
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Authentication error", e);
         }
     }
 
@@ -110,8 +136,7 @@ public class UserDAOImpl implements UserDAO{
         return false;
     }
 
-    @Override
-    public boolean authenticate(String username, String password) {
-        return false;
-    }
+
+
+
 }
