@@ -6,17 +6,24 @@ import com.usermanager.model.UserRole;
 import com.usermanager.exception.DAOException;
 import com.usermanager.util.DatabaseConnection;
 
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class UserDAOImpl implements UserDAO{
 
+    List<String> data;
+
     private static final String INSERT_SQL =
-            "INSERT INTO users (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO comptes (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)";
 
     private static final String AUTH_SQL =
-            "SELECT password FROM users WHERE email = ?";
+            "SELECT * FROM comptes WHERE email = ?";
+
+    private static final String USERS_SQL =
+            "SELECT * FROM comptes WHERE id = ?";
 
     @Override
     public UserModel save(UserModel user) {
@@ -52,26 +59,47 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean authenticate(String email, String password) {
+    public Optional<UserModel> authenticate(String email, String password) {
+        System.out.println("Hello From UserDAOImpl");
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(AUTH_SQL)) {
 
             pstmt.setString(1, email);
 
+            System.out.println("Hello From UserDAOImpl after executing query");
+
             try (ResultSet rs = pstmt.executeQuery()) {
 
                 if (rs.next()) {
-                    String storedPassword = rs.getString("password");
-                    return storedPassword.equals(password);
+                    System.out.println("Hello From UserDAOImpl if");
+
+                    UserModel user = new UserModel();
+                    user.setId(rs.getInt("id"));
+                    user.setNom(rs.getString("nom"));
+                    user.setPrenom(rs.getString("prenom"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setRole(UserRole.valueOf(rs.getString("role")));
+
+                    System.out.println(
+                            user.getNom() + " | " +
+                                    user.getPrenom() + " | " +
+                                    user.getEmail() + " | " +
+                                    user.getRole()
+                    );
+
+                    return Optional.of(user);
                 }
-                return false;
+
+                return Optional.empty();
             }
 
         } catch (SQLException e) {
             throw new DAOException("Authentication error", e);
         }
     }
+
 
     @Override
     public UserModel update(UserModel entity) {
@@ -135,8 +163,4 @@ public class UserDAOImpl implements UserDAO{
     public boolean existsByEmail(String email) {
         return false;
     }
-
-
-
-
 }

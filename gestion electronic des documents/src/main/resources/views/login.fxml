@@ -11,7 +11,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25"
             fx:controller="com.usermanager.controller.UserController"
-            xmlns:fx="http://javafx.com/fxml/1">
+            xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: white">
 
    <children>
 
@@ -38,7 +39,6 @@
        <Button contentDisplay="CENTER" layoutX="240.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Se connecter" textOverrun="CENTER_ELLIPSIS" onAction="#handleLogin" />
 
        <Hyperlink layoutX="233.0" layoutY="329.0" text="Se connecter a un compte" onAction="#goregistrationpage"/>
-
 
    </children>
 </AnchorPane>

@@ -1,0 +1,279 @@
+/* ==================== ROOT & BACKGROUND ==================== */
+.registration-root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.registration-background {
+    -fx-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -fx-background-image:
+            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 50%);
+}
+
+/* ==================== CARD PRINCIPALE ==================== */
+.registration-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 40 45;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 40, 0, 0, 10);
+}
+
+/* ==================== HEADER SECTION ==================== */
+.header-section {
+    -fx-padding: 0 0 10 0;
+}
+
+.header-icon {
+    -fx-font-size: 55px;
+}
+
+.header-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3748;
+}
+
+.header-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #718096;
+}
+
+/* ==================== FORM CONTAINER ==================== */
+.form-container {
+    -fx-padding: 15 0 10 0;
+}
+
+/* ==================== FIELD LABELS ==================== */
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #2d3748;
+}
+
+.field-hint {
+    -fx-font-size: 11px;
+    -fx-text-fill: #a0aec0;
+    -fx-padding: 3 0 0 5;
+}
+
+/* ==================== INPUT FIELDS ==================== */
+.input-field {
+    -fx-background-color: #f7fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 13 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2d3748;
+    -fx-prompt-text-fill: #a0aec0;
+}
+
+.input-field:focused {
+    -fx-border-color: #667eea;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.25), 10, 0, 0, 0);
+}
+
+.input-field:hover {
+    -fx-border-color: #cbd5e0;
+}
+
+/* ==================== INPUT WITH ICON ==================== */
+.input-container {
+    -fx-background-color: #f7fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8 12;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.input-container:hover {
+    -fx-border-color: #cbd5e0;
+}
+
+.input-icon {
+    -fx-font-size: 18px;
+    -fx-min-width: 25px;
+    -fx-text-fill: #718096;
+}
+
+.input-field-with-icon {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 5 5;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2d3748;
+    -fx-prompt-text-fill: #a0aec0;
+}
+
+.input-field-with-icon:focused {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+/* Focus sur le container quand l'input a le focus */
+.input-container:hover {
+    -fx-border-color: #667eea;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.25), 10, 0, 0, 0);
+}
+
+/* ==================== BUTTONS ==================== */
+.btn-submit {
+    -fx-background-color: #14213D;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 15 0;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 12, 0, 0, 4);
+}
+
+.btn-submit:hover {
+    -fx-background-color: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.6), 18, 0, 0, 6);
+    -fx-scale-y: 1.02;
+    -fx-scale-x: 1.02;
+}
+
+.btn-submit:pressed {
+    -fx-background-color: linear-gradient(135deg, #4a54b8 0%, #5a3475 100%);
+    -fx-translate-y: 2;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 2);
+}
+
+.btn-social {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #4a5568;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 12 18;
+    -fx-cursor: hand;
+}
+
+.btn-social:hover {
+    -fx-background-color: #f7fafc;
+    -fx-border-color: #cbd5e0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 5, 0, 0, 2);
+}
+
+.btn-social:pressed {
+    -fx-background-color: #edf2f7;
+    -fx-translate-y: 1;
+}
+
+/* ==================== DIVIDER ==================== */
+.divider-section {
+    -fx-padding: 8 0;
+}
+
+.divider {
+    -fx-background-color: #e2e8f0;
+}
+
+.divider-text {
+    -fx-text-fill: #a0aec0;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 0 12;
+}
+
+/* ==================== FOOTER SECTION ==================== */
+.signIn-text {
+    -fx-text-fill: #718096;
+    -fx-font-size: 14px;
+}
+
+.signIn-link {
+    -fx-text-fill: #667eea;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.footer-section {
+    -fx-padding: 15 0 0 0;
+}
+
+.footer-text {
+    -fx-text-fill: #718096;
+    -fx-font-size: 14px;
+}
+
+.footer-link {
+    -fx-text-fill: #667eea;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.footer-link:hover {
+    -fx-text-fill: #5568d3;
+    -fx-underline: true;
+}
+
+.footer-link:pressed {
+    -fx-text-fill: #4a54b8;
+}
+
+/* ==================== ANIMATIONS & TRANSITIONS ==================== */
+.input-field,
+.input-container,
+.btn-submit,
+.btn-social {
+    -fx-transition: all 0.3s ease;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 600px) {
+    .registration-card {
+        -fx-padding: 30 30;
+        -fx-max-width: 380;
+    }
+
+    .header-icon {
+        -fx-font-size: 45px;
+    }
+
+    .header-title {
+        -fx-font-size: 26px;
+    }
+
+    .header-subtitle {
+        -fx-font-size: 13px;
+    }
+}
+
+/* ==================== FOCUS STYLES ==================== */
+.text-field:focused,
+.password-field:focused {
+    -fx-background-color: white;
+}
+
+/* ==================== SCROLLBAR ==================== */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #cbd5e0;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #a0aec0;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}

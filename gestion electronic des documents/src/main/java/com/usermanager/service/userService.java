@@ -16,8 +16,6 @@ public class UserService {
 
     private final UserDAO userDAO;
 
-
-
     public UserService() {
         this.userDAO = DAOFactory.getInstance().getUserDAO();
     }
@@ -42,8 +40,20 @@ public class UserService {
         return userDAO.save(user);
     }
 
-    public boolean login(String email, String password) {
+    public  Optional<UserModel>  login(String email, String password) {
+        System.out.println("Hello from User Service");
+
         return userDAO.authenticate(email, password);
+    }
+
+    public  Optional<UserModel>  authenticateUser(String username, String password) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new DAOException("Username is required");
+        }
+        if (password == null || password.trim().isEmpty()) {
+            throw new DAOException("Password is required");
+        }
+        return userDAO.authenticate(username, password);
     }
 
     public boolean deleteUser(Integer id) {
@@ -71,16 +81,6 @@ public class UserService {
             return getAllUsers();
         }
         return userDAO.searchByName(keyword);
-    }
-
-    public boolean authenticateUser(String username, String password) {
-        if (username == null || username.trim().isEmpty()) {
-            throw new DAOException("Username is required");
-        }
-        if (password == null || password.trim().isEmpty()) {
-            throw new DAOException("Password is required");
-        }
-        return userDAO.authenticate(username, password);
     }
 
     public long getTotalUserCount() {

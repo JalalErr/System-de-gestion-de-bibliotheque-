@@ -15,6 +15,7 @@ public interface UserDAO extends BaseDAO<UserModel, Integer> {
     List<UserModel> searchByName(String keyword);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
-    boolean authenticate(String username, String password);
+    Optional<UserModel> authenticate(String username, String password);
+  //  UserModel getUserById(int id);
 
 }
