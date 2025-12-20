@@ -13,11 +13,10 @@
             stylesheets="@../../css/stylesheet.css"
             styleClass="root-pane"
 >
-    <!-- Sidebar Navigation -->
     <left>
-        <fx:include source="../SidebarMenuUser.fxml" fx:id="sidebar"/>
-    </left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
 
+    </left>
     <!-- Main Content Area -->
     <center>
         <VBox styleClass="main-content">
