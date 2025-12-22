@@ -10,7 +10,7 @@
 <!-- Composant réutilisable du menu Sidebar -->
 <VBox xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.usermanager.controller.UserController"
+      fx:controller="com.usermanager.controller.SideBarMenuController"
       stylesheets="@../css/stylesheet.css"
       styleClass="sidebar"
       prefWidth="280"
@@ -47,7 +47,7 @@
         </Button>
 
         <!-- Profile Button -->
-        <Button fx:id="profileBtn" styleClass="nav-button" >
+        <Button fx:id="profileBtn" styleClass="nav-button" onAction="#goToProfile">
             <graphic>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <Label text="👤" styleClass="nav-icon"/>
@@ -57,7 +57,7 @@
         </Button>
 
         <!-- Gestion Adherants Button-->
-        <Button fx:id="adherantsBtn" styleClass="nav-button" >
+        <Button fx:id="adherantsBtn" styleClass="nav-button" onAction="#goToAddUser" >
             <graphic>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <Label text="👥" styleClass="nav-icon"/>
@@ -111,7 +111,8 @@
         <Region VBox.vgrow="ALWAYS"/>
 
         <!-- Logout Button -->
-        <Button fx:id="logoutBtn" styleClass="nav-button, logout-button" onAction="#handleLogout">
+        <!-- <Button fx:id="logoutBtn" styleClass="nav-button, logout-button" onAction="#handleLogout"> -->
+        <Button fx:id="logoutBtn" styleClass="nav-button, logout-button" onAction="#logout">
             <graphic>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <Label text="🚪" styleClass="nav-icon"/>

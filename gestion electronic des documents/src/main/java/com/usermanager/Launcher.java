@@ -18,10 +18,9 @@ public class Launcher extends Application{
 
         System.out.println("✓ Database connection successful");
 
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LoginPage.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LoginPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
 
-        Scene scene = new Scene(loader.load(), 600, 700);
+        Scene scene = new Scene(loader.load(), 600, 400);
         //stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
@@ -30,7 +29,7 @@ public class Launcher extends Application{
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
                 javafx.scene.control.Alert.AlertType.ERROR);
         alert.setTitle(title);
-        alert.setHeaderText("Login");
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }

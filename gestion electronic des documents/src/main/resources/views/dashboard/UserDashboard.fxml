@@ -27,11 +27,6 @@
                 <!-- Search Bar -->
                 <TextField fx:id="searchField" promptText="Search"
                            styleClass="search-field" prefWidth="400"/>
-
-                <!-- Action Icons -->
-                <Button styleClass="icon-button" text="☀️"/>
-                <Button styleClass="icon-button" text="🌙"/>
-                <Button styleClass="icon-button" text="🔔"/>
             </HBox>
 
             <!-- Order History Section -->

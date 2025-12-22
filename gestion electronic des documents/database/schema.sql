@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS mysql;
-USE mysql;
+CREATE DATABASE IF NOT EXISTS mydb;
+USE mydb;
 
-CREATE TABLE comptes
+CREATE TABLE users
 (
     id         INT PRIMARY KEY AUTO_INCREMENT,
     nom        VARCHAR(50)  NOT NULL UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE comptes
 );
 
 -- Sample data
-INSERT INTO comptes (nom, prenom, email, password, role)
+INSERT INTO users (nom, prenom, email, password, role)
 VALUES ('admin', 'qdmin','admin@company.com', 'admin123', 'ADMIN'),
        ('john','doe' ,'john@company.com', 'pass123', 'USER'),
        ('jane', 'smith','jane@company.com', 'pass123', 'USER'),

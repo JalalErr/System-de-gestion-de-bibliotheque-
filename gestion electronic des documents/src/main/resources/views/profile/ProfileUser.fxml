@@ -10,7 +10,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.usermanager.controller.UserController"
+            fx:controller="com.usermanager.controller.AdminController"
             stylesheets="@../../css/profilestyle.css"
             styleClass="root-pane">
 

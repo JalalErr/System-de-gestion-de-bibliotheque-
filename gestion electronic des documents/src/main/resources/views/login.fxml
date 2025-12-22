@@ -10,9 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25"
-            fx:controller="com.usermanager.controller.UserController"
-            xmlns:fx="http://javafx.com/fxml/1"
-            style="-fx-background-color: white">
+            fx:controller="com.usermanager.controller.loginController"
+            xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
 
@@ -28,17 +27,15 @@
          </font>
       </Label>
 
-       <TextField layoutX="211.0" layoutY="153.0" prefHeight="25.0" prefWidth="204.0" fx:id="emailField_" promptText="nom@exemple.com" />
+       <TextField layoutX="211.0" layoutY="153.0" prefHeight="25.0" prefWidth="204.0" fx:id="email" promptText="nom@exemple.com" />
 
-       <TextField layoutX="211.0" layoutY="200.0" prefHeight="25.0" prefWidth="204.0" fx:id="passwordField_" promptText="Mot de passe" />
+       <TextField layoutX="211.0" layoutY="200.0" prefHeight="25.0" prefWidth="204.0" fx:id="password" promptText="Mot de passe" />
+
+       <Button contentDisplay="CENTER" layoutX="240.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Se connecter" textOverrun="CENTER_ELLIPSIS" />
 
        <Hyperlink layoutX="214.0" layoutY="225.0" text="Mot de passe oublié" />
 
-       <Label style="-fx-text-fill: red;" layoutX="240.0" layoutY="260.0" fx:id="errorLabel"  />
-
-       <Button contentDisplay="CENTER" layoutX="240.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Se connecter" textOverrun="CENTER_ELLIPSIS" onAction="#handleLogin" />
-
-       <Hyperlink layoutX="233.0" layoutY="329.0" text="Se connecter a un compte" onAction="#goregistrationpage"/>
+       <Hyperlink layoutX="233.0" layoutY="329.0" text="Se connecter a un compte" onAction="#goregistrationpage" />
 
    </children>
 </AnchorPane>

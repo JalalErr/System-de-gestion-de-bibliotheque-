@@ -2,9 +2,8 @@ package com.usermanager.service;
 
 import com.usermanager.dao.DAOFactory;
 import com.usermanager.dao.UserDAO;
-import com.usermanager.dao.impl.UserDAOImpl;
 import com.usermanager.exception.DuplicateDataException;
-import com.usermanager.model.UserModel;
+import com.usermanager.model.AdminModel;
 import com.usermanager.model.UserRole;
 import com.usermanager.exception.DAOException;
 
@@ -12,19 +11,19 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class UserService {
+public class AdminService {
 
     private final UserDAO userDAO;
 
-    public UserService() {
+    public AdminService() {
         this.userDAO = DAOFactory.getInstance().getUserDAO();
     }
 
-    public UserService(UserDAO userDAO) {
+    public AdminService(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
-    public UserModel createUser(UserModel user) {
+    public AdminModel createUser(AdminModel user) {
         System.out.println("User Service");
         //validateUser(user);
         System.out.println("User Service after validation");
@@ -40,13 +39,13 @@ public class UserService {
         return userDAO.save(user);
     }
 
-    public  Optional<UserModel>  login(String email, String password) {
+    public  Optional<AdminModel>  login(String email, String password) {
         System.out.println("Hello from User Service");
 
         return userDAO.authenticate(email, password);
     }
 
-    public  Optional<UserModel>  authenticateUser(String username, String password) {
+    public  Optional<AdminModel>  authenticateUser(String username, String password) {
         if (username == null || username.trim().isEmpty()) {
             throw new DAOException("Username is required");
         }
@@ -60,23 +59,23 @@ public class UserService {
         return userDAO.delete(id);
     }
 
-    public Optional<UserModel> getUserById(Integer id) {
+    public Optional<AdminModel> getUserById(Integer id) {
         return userDAO.findById(id);
     }
 
-    public Optional<UserModel> getUserByUsername(String username) {
+    public Optional<AdminModel> getUserByUsername(String username) {
         return userDAO.findByUsername(username);
     }
 
-    public List<UserModel> getAllUsers() {
+    public List<AdminModel> getAllUsers() {
         return userDAO.findAll();
     }
 
-    public List<UserModel> getUsersByRole(UserRole role) {
+    public List<AdminModel> getUsersByRole(UserRole role) {
         return userDAO.findByRole(role);
     }
 
-    public List<UserModel> searchUsers(String keyword) {
+    public List<AdminModel> searchUsers(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             return getAllUsers();
         }
@@ -87,7 +86,7 @@ public class UserService {
         return userDAO.count();
     }
 
-    private void validateUser(UserModel user) {
+    private void validateUser(AdminModel user) {
         if (user.getNom() == null || user.getNom().trim().isEmpty()) {
             throw new DAOException("Username is required");
         }
@@ -114,10 +113,6 @@ public class UserService {
 
         if (user.getPassword().length() < 6) {
             throw new DAOException("Password must be at least 6 characters");
-        }
-
-        if (user.getRole() == null) {
-            throw new DAOException("Role is required");
         }
     }
 

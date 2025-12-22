@@ -1,6 +1,6 @@
 package com.usermanager.model;
 
-public class UserModel {
+public class AdminModel {
 
     private Integer id;
     private String nom;
@@ -9,11 +9,11 @@ public class UserModel {
     private String password;
     private UserRole role;
 
-    public UserModel() {
+    public AdminModel() {
         this.role = UserRole.USER;
     }
 
-    public UserModel(String nom,String prenom, String email, String password) {
+    public AdminModel(String nom, String prenom, String email, String password) {
         this();
         this.nom = nom;
         this.prenom = prenom;
@@ -77,7 +77,7 @@ public class UserModel {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
-                 ", role=" + role +
+                ", role=" + role +
                 '}';
     }
 }

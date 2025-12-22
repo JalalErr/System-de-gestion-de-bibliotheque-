@@ -10,7 +10,7 @@
 <!-- Composant réutilisable du menu Sidebar -->
 <VBox xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.usermanager.controller.UserController"
+      fx:controller="com.usermanager.controller.AdminController"
       stylesheets="@../css/stylesheet.css"
       styleClass="sidebar"
       prefWidth="280"
