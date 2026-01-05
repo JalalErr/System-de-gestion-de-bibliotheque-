@@ -8,9 +8,9 @@
 
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.usermanager.controller.AdminController"
-           stylesheets="@../css/auth.css"
-           styleClass="auth-root">
+           fx:controller="com.usermanager.controller.UserController"
+           stylesheets="@../../css/auth.css"
+           styleClass="auth-root" prefWidth="500" prefHeight="700">
 
 <!-- Background with gradient -->
 <VBox styleClass="auth-background"/>

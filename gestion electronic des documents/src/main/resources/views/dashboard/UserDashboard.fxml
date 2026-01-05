@@ -2,111 +2,57 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.usermanager.controller.DashboarsController"
-            stylesheets="@../../css/stylesheet.css"
-            styleClass="root-pane"
->
+<BorderPane xmlns="http://javafx.com/javafx/21.0.6"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.DashboardController"
+
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- ================= SIDEBAR ================= -->
     <left>
-        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
-
+        <fx:include source="../SidebarMenuAdmin.fxml"/>
     </left>
-    <!-- Main Content Area -->
-    <center>
-        <VBox styleClass="main-content">
-            <!-- Header Bar -->
-            <HBox styleClass="header-bar" alignment="CENTER_RIGHT" spacing="15">
-                <HBox HBox.hgrow="ALWAYS"/>
 
-                <!-- Search Bar -->
-                <TextField fx:id="searchField" promptText="Search"
-                           styleClass="search-field" prefWidth="400"/>
+    <!-- ================= MAIN CONTENT ================= -->
+    <top>
+        <HBox spacing="20" padding="15">
+            <VBox>
+                <Label text="Livres disponibles"/>
+                <Label fx:id="lblLivreTotal"/>
+                <Label fx:id="lblLivreEmprunte"/>
+                <Label fx:id="lblLivreRestant"/>
+            </VBox>
+
+            <VBox>
+                <Label text="PFE disponibles"/>
+                <Label fx:id="lblPfeTotal"/>
+                <Label fx:id="lblPfeEmprunte"/>
+                <Label fx:id="lblPfeRestant"/>
+            </VBox>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" padding="10">
+            <HBox spacing="10">
+                <Button text="Tous" onAction="#showAll"/>
+                <Button text="En cours" onAction="#showEnCours"/>
+                <Button text="Retournés" onAction="#showRetourne"/>
             </HBox>
 
-            <!-- Order History Section -->
-            <VBox styleClass="content-section" VBox.vgrow="ALWAYS">
-                <!-- Section Header -->
-                <HBox styleClass="section-header" alignment="CENTER_LEFT" spacing="20">
-                    <Label text="Order History" styleClass="section-title"/>
-                </HBox>
-
-                <!-- Filter Tabs and Date Range -->
-                <HBox styleClass="filter-bar" alignment="CENTER_LEFT" spacing="20">
-                    <HBox spacing="10" styleClass="tab-group" HBox.hgrow="ALWAYS">
-                        <Button text="All Orders" styleClass="filter-tab, active-tab" fx:id="allOrdersTab"/>
-                        <Button text="Summary" styleClass="filter-tab" fx:id="summaryTab"/>
-                        <Button text="Completed" styleClass="filter-tab" fx:id="completedTab"/>
-                        <Button text="Cancelled" styleClass="filter-tab" fx:id="cancelledTab"/>
-                    </HBox>
-
-                    <HBox spacing="10" alignment="CENTER_RIGHT">
-                        <DatePicker fx:id="startDatePicker" promptText="13-03-2023"
-                                    styleClass="date-picker"/>
-                        <Label text="To" styleClass="date-label"/>
-                        <DatePicker fx:id="endDatePicker" promptText="13-03-2023"
-                                    styleClass="date-picker"/>
-                    </HBox>
-                </HBox>
-
-                <!-- Orders Table -->
-                <TableView fx:id="ordersTable" styleClass="orders-table" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn text="S.No" prefWidth="80" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="serialNo"/>
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn text="Order ID" prefWidth="120" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="orderId"/>
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn text="Order Name" prefWidth="150" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="orderName"/>
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn text="Stock Value" prefWidth="130" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="stockValue"/>
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn text="Quantity" prefWidth="120" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="quantity"/>
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn text="Status" prefWidth="150" styleClass="table-column">
-                            <cellValueFactory>
-                                <javafx.scene.control.cell.PropertyValueFactory property="status"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
-
-                <!-- Pagination -->
-                <HBox styleClass="pagination-bar" alignment="CENTER" spacing="10">
-                    <Button text="❮" styleClass="pagination-button, nav-arrow"/>
-                    <Button text="1" styleClass="pagination-button, active-page"/>
-                    <Button text="2" styleClass="pagination-button"/>
-                    <Button text="3" styleClass="pagination-button"/>
-                    <Button text="4" styleClass="pagination-button"/>
-                    <Label text="....." styleClass="pagination-ellipsis"/>
-                    <Button text="12" styleClass="pagination-button"/>
-                    <Button text="❯" styleClass="pagination-button, nav-arrow"/>
-                </HBox>
-            </VBox>
+            <TableView fx:id="table">
+                <columns>
+                    <TableColumn text="N°" fx:id="colId"/>
+                    <TableColumn text="Nom" fx:id="colNom"/>
+                    <TableColumn text="Type" fx:id="colType"/>
+                    <TableColumn text="Titre" fx:id="colTitre"/>
+                    <TableColumn text="Statut" fx:id="colStatut"/>
+                </columns>
+            </TableView>
         </VBox>
     </center>
+
 </BorderPane>

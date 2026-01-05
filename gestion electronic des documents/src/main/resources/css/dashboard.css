@@ -1,0 +1,68 @@
+/* ROOT */
+.root-pane {
+    -fx-background-color: #f4f6f8;
+    -fx-font-family: "Segoe UI";
+}
+
+/* HEADER */
+.header-bar {
+    -fx-background-color: transparent;
+}
+
+/* SEARCH */
+.search-field {
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+/* STATS */
+.stats-box {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-spacing: 6;
+    -fx-background-radius: 8;
+    -fx-border-color: #e5e7eb;
+}
+
+.stats-title {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}
+
+.stats-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+/* FILTERS */
+.filter-tab {
+    -fx-background-color: #e5e7eb;
+    -fx-background-radius: 5;
+}
+
+.active-tab {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+}
+
+/* TABLE */
+.orders-table {
+    -fx-background-color: white;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 8;
+}
+
+.orders-table .column-header-background {
+    -fx-background-color: #f9fafb;
+}
+
+/* PAGINATION (SUPPRIMÉE) */
+.pagination {
+    -fx-visible: false;
+    -fx-managed: false;
+}

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.usermanager.controller.ClientManagerController"
+            stylesheets="@../../css/add-user-style.css"
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- Import Sidebar Component -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+            <!-- Header Bar -->
+            <HBox styleClass="header-bar" alignment="CENTER_RIGHT" spacing="15">
+                <HBox HBox.hgrow="ALWAYS"/>
+
+                <!-- Search Bar -->
+                <TextField fx:id="searchField" promptText="Search"
+                           styleClass="search-field" prefWidth="400"/>
+            </HBox>
+
+            <!-- Form Content -->
+            <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox styleClass="form-content" spacing="30">
+
+                    <!-- Page Header -->
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <!-- <Button text="←" styleClass="back-button" fx:id="backBtn"/> -->
+                        <Label text="Ajouter un Adhérant" styleClass="page-title"/>
+                    </HBox>
+
+                    <!-- Form Card -->
+                    <VBox styleClass="form-card" spacing="30">
+
+                        <!-- Photo Section -->
+                        <VBox alignment="CENTER" spacing="15" styleClass="photo-section">
+                            <Label text="Photo de profil" styleClass="section-subtitle"/>
+
+                            <StackPane styleClass="avatar-upload-zone">
+                                <Circle radius="65" styleClass="upload-circle"/>
+                                <VBox alignment="CENTER" spacing="8">
+                                    <Label text="📷" styleClass="upload-icon"/>
+                                    <Label text="Ajouter" styleClass="upload-text"/>
+                                </VBox>
+                                <!-- Hidden file input trigger -->
+                                <Button styleClass="upload-trigger" fx:id="photoUploadBtn"/>
+                            </StackPane>
+
+                            <Label text="Format: JPG, PNG (Max 5MB)" styleClass="upload-hint"/>
+                        </VBox>
+
+                        <Separator styleClass="form-separator"/>
+
+                        <!-- Personal Information Section -->
+                        <VBox spacing="25">
+                            <Label text="Informations Personnelles" styleClass="section-title"/>
+
+                            <GridPane styleClass="form-grid" hgap="20" vgap="20">
+                                <!-- Row 1: Nom et Prénom -->
+                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="Nom *" styleClass="field-label"/>
+                                    <TextField fx:id="lastNameField"
+                                               promptText="Entrez le nom de famille"
+                                               styleClass="form-input"/>
+                                </VBox>
+
+                                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label text="Prénom *" styleClass="field-label"/>
+                                    <TextField fx:id="firstNameField"
+                                               promptText="Entrez le prénom"
+                                               styleClass="form-input"/>
+                                </VBox>
+
+                                <!-- Row 2: Email et Téléphone -->
+                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <Label text="Email *" styleClass="field-label"/>
+                                    <HBox styleClass="input-with-icon">
+                                        <Label text="📧" styleClass="input-icon"/>
+                                        <TextField fx:id="emailField"
+                                                   promptText="exemple@email.com"
+                                                   styleClass="form-input-icon"
+                                                   HBox.hgrow="ALWAYS"/>
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label text="Téléphone *" styleClass="field-label"/>
+                                    <HBox styleClass="input-with-icon">
+                                        <Label text="📱" styleClass="input-icon"/>
+                                        <TextField fx:id="phoneField"
+                                                   promptText="+212 6 XX XX XX XX"
+                                                   styleClass="form-input-icon"
+                                                   HBox.hgrow="ALWAYS"/>
+                                    </HBox>
+                                </VBox>
+
+                                <!-- Row 3: CIN  -->
+                                <VBox spacing="8" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                    <Label text="CIN *" styleClass="field-label"/>
+                                    <TextField fx:id="cinField"
+                                               promptText="CIN"
+                                               styleClass="form-input"/>
+                                </VBox>
+
+                                <!-- Row 4: Adresse -->
+                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                                      GridPane.columnSpan="2">
+                                    <Label text="Adresse Complète" styleClass="field-label"/>
+                                    <TextField fx:id="addressField"
+                                               promptText="Rue, Ville, Code Postal"
+                                               styleClass="form-input"/>
+                                </VBox>
+                            </GridPane>
+                        </VBox>
+
+                        <Separator styleClass="form-separator"/>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="action-buttons">
+                            <Button text="Annuler" styleClass="btn-cancel" fx:id="cancelBtn" onAction="#clearFrom"/>
+                            <Button text="Enregistrer l'Utilisateur" styleClass="btn-save" fx:id="saveBtn" onAction="#handelSave"/>
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- Help Text -->
+                    <Label text="* Champs obligatoires" styleClass="required-note"/>
+
+                    <!-- Header Section 2 -->
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Supprimer un Adherant" styleClass="page-title"/>
+                    </HBox>
+
+                    <!-- Form Card -->
+                    <VBox styleClass="form-card" spacing="30">
+
+                        <!-- Personal Information Section -->
+                        <VBox spacing="25">
+                            <Label text="Informations Personnelles" styleClass="section-title"/>
+
+                            <GridPane styleClass="form-grid" hgap="20" vgap="20">
+                                <!-- Row 1: Nom et Prénom -->
+                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="Nom *" styleClass="field-label"/>
+                                    <TextField fx:id="lastNameField_"
+                                               promptText="Entrez le nom de famille"
+                                               styleClass="form-input"/>
+                                </VBox>
+
+                                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label text="Prénom *" styleClass="field-label"/>
+                                    <TextField fx:id="firstNameField_"
+                                               promptText="Entrez le prénom"
+                                               styleClass="form-input"/>
+                                </VBox>
+
+                                <!-- Row 2: CIN -->
+                                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <Label text="CIN *" styleClass="field-label"/>
+                                    <HBox styleClass="input-with-icon">
+                                        <Label styleClass="input-icon"/>
+                                        <TextField fx:id="cinField_"
+                                                   promptText="CIN"
+                                                   styleClass="form-input-icon"
+                                                   HBox.hgrow="ALWAYS"/>
+                                    </HBox>
+                                </VBox>
+
+                            </GridPane>
+                        </VBox>
+
+                        <Separator styleClass="form-separator"/>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="action-buttons">
+                            <Button text="Annuler" styleClass="btn-cancel" fx:id="clear" onAction="#clearFrom" />
+                            <Button text="Supprimer" styleClass="btn-delete" fx:id="deletBtn" onAction="#deleteClient"/>
+                        </HBox>
+
+                    </VBox>
+                    <!-- Help Text -->
+                    <Label text="* Champs obligatoires" styleClass="required-note"/>
+                </VBox>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

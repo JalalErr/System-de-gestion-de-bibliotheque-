@@ -20,7 +20,7 @@ public class DatabaseConnection {
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(DatabaseConfig.getUrl());
             config.setUsername(DatabaseConfig.getUsername());
-            config.setPassword("");
+            config.setPassword(DatabaseConfig.getPassword());
 //            config.setConnectionTimeout(DatabaseConfig.getLongProperty("hikari.connectionTimeout", 30000));
 //            config.setIdleTimeout(DatabaseConfig.getLongProperty("hikari.idleTimeout", 600000));
 //            config.setMaxLifetime(DatabaseConfig.getLongProperty("hikari.maxLifetime", 1800000));

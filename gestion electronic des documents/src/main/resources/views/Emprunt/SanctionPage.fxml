@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.SanctionController"
+            stylesheets="@../../css/sanction-style.css"
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- Import Sidebar Component (Optional) -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+
+            <!-- Header Bar -->
+            <HBox styleClass="header-bar" alignment="CENTER_RIGHT" spacing="15">
+                <HBox HBox.hgrow="ALWAYS"/>
+
+                <!-- Search Bar -->
+                <TextField fx:id="globalSearchField" promptText="Search"
+                           styleClass="search-field" prefWidth="400"/>
+            </HBox>
+
+            <!-- Content Section -->
+            <VBox styleClass="content-section" VBox.vgrow="ALWAYS">
+
+                <!-- Page Header -->
+                <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="20">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Liste des Sanctions" styleClass="page-title"/>
+                        <Label text="Gérez et consultez toutes les sanctions appliquées"
+                               styleClass="page-subtitle"/>
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <Button text="➕ Nouvelle Sanction" styleClass="add-btn" fx:id="addSanctionBtn"/>
+                </HBox>
+
+                <!-- Search and Filter Bar -->
+                <HBox styleClass="search-filter-bar" spacing="15" alignment="CENTER_LEFT">
+                    <!-- Search Box -->
+                    <HBox styleClass="search-box" HBox.hgrow="ALWAYS">
+                        <Label text="🔍" styleClass="search-icon"/>
+                        <TextField fx:id="sanctionSearchField"
+                                   promptText="Rechercher par adhérent, raison ou ID emprunt..."
+                                   styleClass="table-search-input"
+                                   HBox.hgrow="ALWAYS"/>
+                        <Button text="✕" styleClass="clear-search-btn"
+                                fx:id="clearSearchBtn" visible="false"/>
+                    </HBox>
+
+                    <!-- Status Filter -->
+                    <VBox spacing="5">
+                        <Label text="Statut" styleClass="filter-label"/>
+                        <ComboBox fx:id="statusFilterCombo"
+                                  promptText="Toutes"
+                                  styleClass="filter-combo"
+                                  prefWidth="150">
+                            <items>
+                                <javafx.collections.FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Toutes"/>
+                                    <String fx:value="Actives"/>
+                                    <String fx:value="Inactives"/>
+                                </javafx.collections.FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+
+                    <!-- Stats Display -->
+                    <VBox alignment="CENTER" spacing="2" styleClass="stat-box">
+                        <Label fx:id="totalSanctionsLabel" text="0" styleClass="stat-value"/>
+                        <Label text="Total" styleClass="stat-label"/>
+                    </VBox>
+                    <Separator orientation="VERTICAL" prefHeight="40"/>
+                    <VBox alignment="CENTER" spacing="2" styleClass="stat-box">
+                        <Label fx:id="activeSanctionsLabel" text="0" styleClass="stat-value-active"/>
+                        <Label text="Actives" styleClass="stat-label"/>
+                    </VBox>
+                </HBox>
+
+                <!-- TableView with Modern Design -->
+                <TableView fx:id="tableSanctions"
+                           styleClass="modern-table"
+                           VBox.vgrow="ALWAYS">
+
+                    <columns>
+                        <!-- ID Column -->
+                        <TableColumn fx:id="colId"
+                                     text="🆔 ID"
+                                     prefWidth="80"
+                                     styleClass="table-column-id"/>
+
+                        <!-- Adhérent Column -->
+                        <TableColumn fx:id="colAdherent"
+                                     text="👤 Adhérent"
+                                     prefWidth="220"
+                                     styleClass="table-column-adherent"/>
+
+                        <!-- Emprunt ID Column -->
+                        <TableColumn fx:id="colEmpruntId"
+                                     text="📚 Emprunt ID"
+                                     prefWidth="120"
+                                     styleClass="table-column-emprunt"/>
+
+                        <!-- Raison Column -->
+                        <TableColumn fx:id="colRaison"
+                                     text="⚠️ Raison"
+                                     prefWidth="320"
+                                     styleClass="table-column-raison"/>
+
+                        <!-- Date Sanction Column -->
+                        <TableColumn fx:id="colDateSanction"
+                                     text="📅 Date Sanction"
+                                     prefWidth="180"
+                                     styleClass="table-column-date"/>
+
+                        <!-- Active Column -->
+                        <TableColumn fx:id="colActive"
+                                     text="✓ Active"
+                                     prefWidth="100"
+                                     styleClass="table-column-active"/>
+
+                        <!-- Actions Column (Optional)
+                        <TableColumn text="⚙️ Actions"
+                                     prefWidth="120"
+                                     styleClass="table-column-actions">
+                            <- Can add edit/delete buttons here
+                        </TableColumn> -->
+                    </columns>
+
+                    <!-- Custom Empty State -->
+                    <placeholder>
+                        <VBox alignment="CENTER" spacing="20" styleClass="empty-state">
+                            <Label text="⚠️" styleClass="empty-icon"/>
+                            <Label text="Aucune sanction enregistrée" styleClass="empty-title"/>
+                            <Label text="Les sanctions appliquées apparaîtront ici"
+                                   styleClass="empty-subtitle"/>
+                            <Button text="➕ Ajouter une sanction"
+                                    styleClass="empty-action-btn"
+                                    />
+                        </VBox>
+                    </placeholder>
+
+                </TableView>
+
+                <!-- Pagination Bar -->
+                <HBox styleClass="pagination-bar" alignment="CENTER" spacing="20">
+                    <!-- Items per page -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Afficher" styleClass="pagination-label"/>
+                        <ComboBox fx:id="itemsPerPageCombo"
+                                  styleClass="items-combo"
+                                  prefWidth="80">
+                            <items>
+                                <javafx.collections.FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="10"/>
+                                    <String fx:value="25"/>
+                                    <String fx:value="50"/>
+                                    <String fx:value="100"/>
+                                </javafx.collections.FXCollections>
+                            </items>
+                            <value>
+                                <String fx:value="25"/>
+                            </value>
+                        </ComboBox>
+                        <Label text="sanctions" styleClass="pagination-label"/>
+                    </HBox>
+                    <!-- Pagination Info -->
+                    <Region HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+            </VBox>
+
+            <!-- Stats Cards (Optional) -->
+            <HBox styleClass="stats-cards" spacing="20">
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

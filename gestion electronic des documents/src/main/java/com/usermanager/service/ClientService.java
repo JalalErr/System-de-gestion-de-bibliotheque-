@@ -1,27 +1,31 @@
 package com.usermanager.service;
 
-import com.usermanager.dao.impl.AdherantDAO;
+import com.usermanager.dao.impl.ClientDAOImpl;
+import com.usermanager.dao.impl.UserDAOImpl;
 import com.usermanager.exception.DAOException;
-import com.usermanager.model.AdminModel;
-import com.usermanager.model.UserModel;
+import com.usermanager.model.ClientModel;
 
-public class UserServices {
+public class ClientService {
 
-    AdherantDAO adherantDAO = new AdherantDAO();
+    UserDAOImpl userDAOImpl = new UserDAOImpl();
+    ClientDAOImpl clientDAO = new ClientDAOImpl();
 
-    public UserModel create(UserModel user) {
+    public ClientModel create(ClientModel user) {
         //validateUser(user);
         //adherantDAO.save(user);
         System.out.println("Hello from User service");
 
-        return adherantDAO.save(user);
+        return clientDAO.save(user);
     }
 
-    public UserModel delete(UserModel user) {
+    public ClientModel delete(ClientModel user) {
+
+        System.out.println("Hello from Client Service");
+        clientDAO.deletByCin(user);
         return user;
     }
 
-    private void validateUser(UserModel user) {
+    private void validateUser(ClientModel user) {
         if (user.getNom() == null || user.getNom().trim().isEmpty()) {
             throw new DAOException("Username is required");
         }
@@ -54,9 +58,7 @@ public class UserServices {
             throw new DAOException("Invalid email format");
         }
 
-        if (user.getAdress() == null) {
-            throw new DAOException("Adresse is required");
-        }
+
     }
 
     private boolean isValidEmail(String email) {

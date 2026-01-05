@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.EmpruntController"
+            stylesheets="@../../css/emprunt-style.css"
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- Import Sidebar Component (Optional) -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+
+            <!-- Header Bar -->
+            <HBox styleClass="header-bar" alignment="CENTER_RIGHT" spacing="15">
+                <HBox HBox.hgrow="ALWAYS"/>
+
+                <!-- Search Bar -->
+                <TextField fx:id="globalSearchField" promptText="Search"
+                           styleClass="search-field" prefWidth="400"/>
+            </HBox>
+
+            <!-- Form Content -->
+            <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox styleClass="form-content" spacing="30" maxWidth="700">
+
+                    <!-- Page Header -->
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Button text="←" styleClass="back-button" fx:id="backBtn"/>
+                        <VBox spacing="5">
+                            <Label text="Nouvel Emprunt" styleClass="page-title"/>
+                            <Label text="Enregistrer un emprunt de livre ou rapport"
+                                   styleClass="page-subtitle"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Form Card -->
+                    <VBox styleClass="form-card" spacing="30">
+
+                        <!-- Icon Header -->
+                        <HBox alignment="CENTER" spacing="15" styleClass="icon-header">
+                            <Label text="📚" styleClass="header-icon"/>
+                            <VBox alignment="CENTER_LEFT">
+                                <Label text="Informations d'Emprunt" styleClass="card-title"/>
+                                <Label text="Remplissez tous les champs requis" styleClass="card-subtitle"/>
+                            </VBox>
+                        </HBox>
+
+                        <Separator styleClass="form-separator"/>
+
+                        <!-- Form Fields -->
+                        <VBox spacing="25" styleClass="fields-container">
+
+                            <!-- ID Adhérent -->
+                            <VBox spacing="10">
+                                <Label text="CIN Adhérent *" styleClass="field-label"/>
+                                <HBox styleClass="input-with-icon" spacing="10">
+                                    <Label text="👤" styleClass="input-icon"/>
+                                    <TextField fx:id="adherentIdField"
+                                               promptText="Entrez le CIN de l'adhérent (Ex: 1)"
+                                               styleClass="form-input-icon"
+                                               HBox.hgrow="ALWAYS"/>
+                                </HBox>
+                                <Label text="L'identifiant unique de l'adhérent emprunteur"
+                                       styleClass="field-hint"/>
+                            </VBox>
+
+                            <!-- Type Document -->
+                            <VBox spacing="10">
+                                <Label text="Type de Document *" styleClass="field-label"/>
+                                <HBox styleClass="input-with-icon" spacing="10">
+                                    <Label text="📑" styleClass="input-icon"/>
+                                    <ComboBox fx:id="typeCombo"
+                                              promptText="Sélectionnez le type"
+                                              styleClass="form-combo-icon"
+                                              HBox.hgrow="ALWAYS"
+                                              maxWidth="Infinity"/>
+                                </HBox>
+                                <Label text="Choisissez entre Livre ou Rapport"
+                                       styleClass="field-hint"/>
+                            </VBox>
+
+                            <!-- ID Document -->
+                            <VBox spacing="10">
+                                <Label text="ID Document *" styleClass="field-label"/>
+                                <HBox styleClass="input-with-icon" spacing="10">
+                                    <Label text="🆔" styleClass="input-icon"/>
+                                    <TextField fx:id="documentIdField"
+                                               promptText="Entrez l'ID du document"
+                                               styleClass="form-input-icon"
+                                               HBox.hgrow="ALWAYS"/>
+                                </HBox>
+                                <Label text="L'identifiant du livre ou rapport à emprunter"
+                                       styleClass="field-hint"/>
+                            </VBox>
+
+                            <!-- Date Emprunt -->
+                            <VBox spacing="10">
+                                <Label text="Date d'Emprunt *" styleClass="field-label"/>
+                                <HBox styleClass="input-with-icon" spacing="10">
+                                    <Label text="📅" styleClass="input-icon"/>
+                                    <DatePicker fx:id="dpDateEmprunt"
+                                                promptText="Sélectionnez la date"
+                                                styleClass="form-datepicker-icon"
+                                                HBox.hgrow="ALWAYS"
+                                                maxWidth="Infinity"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Date Retour Prévue -->
+                            <VBox spacing="10">
+                                <Label text="Date de Retour Prévue *" styleClass="field-label"/>
+                                <HBox styleClass="input-with-icon" spacing="10">
+                                    <Label text="📆" styleClass="input-icon"/>
+                                    <DatePicker fx:id="retourPicker"
+                                                promptText="Sélectionnez la date de retour"
+                                                styleClass="form-datepicker-icon"
+                                                HBox.hgrow="ALWAYS"
+                                                maxWidth="Infinity"/>
+                                </HBox>
+                                <Label text="La date à laquelle le document doit être retourné"
+                                       styleClass="field-hint"/>
+                            </VBox>
+
+                        </VBox>
+
+                        <Separator styleClass="form-separator"/>
+
+                        <!-- Message Box -->
+                        <VBox fx:id="messageBox" styleClass="message-box"
+                              spacing="10" visible="false" managed="false">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label fx:id="messageIcon" text="✓" styleClass="message-icon"/>
+                                <Label fx:id="lblMessage"
+                                       styleClass="message-text"
+                                       wrapText="true"
+                                       HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="15" alignment="CENTER" styleClass="action-buttons">
+                            <Button text="Annuler"
+                                    styleClass="btn-cancel"
+                                    fx:id="cancelBtn"
+                                    prefWidth="150"/>
+                            <Button text="📥 Enregistrer l'Emprunt"
+                                    onAction="#emprunter"
+                                    styleClass="btn-submit"
+                                    prefWidth="250"/>
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- Info Box -->
+                    <HBox styleClass="info-box" spacing="15" alignment="CENTER_LEFT">
+                        <Label text="💡" styleClass="info-icon"/>
+                        <VBox spacing="5">
+                            <Label text="Rappel Important" styleClass="info-title"/>
+                            <Label text="Assurez-vous que l'adhérent n'a pas dépassé la limite d'emprunts autorisés et que le document est disponible."
+                                   styleClass="info-text"
+                                   wrapText="true"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Required Note -->
+                    <Label text="* Champs obligatoires" styleClass="required-note"/>
+
+                </VBox>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

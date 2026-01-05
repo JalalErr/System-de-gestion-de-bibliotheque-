@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.UserHistoriqueController"
+            stylesheets="@../../css/historique.css"
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- Import Sidebar Component (Optional) -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+
+            <!-- Header Bar -->
+            <HBox styleClass="header-bar" alignment="CENTER_RIGHT" spacing="15">
+                <HBox HBox.hgrow="ALWAYS"/>
+
+                <!-- Search Bar -->
+                <TextField fx:id="globalSearchField" promptText="Search"
+                           styleClass="search-field" prefWidth="400"/>
+            </HBox>
+
+            <!-- Content Section -->
+            <VBox styleClass="content-section" VBox.vgrow="ALWAYS">
+
+                <!-- Page Header -->
+                <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="20">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Historique des Actions" styleClass="page-title"/>
+                        <Label text="Consultez toutes les actions effectuées par l'administrateur"
+                               styleClass="page-subtitle"/>
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <Button text="🔄 Actualiser" styleClass="refresh-btn" fx:id="refreshBtn"/>
+                    <Button text="📥 Exporter" styleClass="export-btn" fx:id="exportBtn"/>
+                </HBox>
+
+                <!-- TableView with Modern Design -->
+                <TableView fx:id="historiqueTable"
+                           styleClass="modern-table"
+                           VBox.vgrow="ALWAYS">
+
+                    <columns>
+                        <!-- ID Column with Icon -->
+                        <TableColumn fx:id="idColumn"
+                                     text="ID"
+                                     prefWidth="100"
+                                     styleClass="table-column-id">
+                            <cellValueFactory>
+                                <javafx.scene.control.cell.PropertyValueFactory property="compte_id"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Action Column with Badge -->
+                        <TableColumn fx:id="actionColumn"
+                                     text="⚡ Action"
+                                     prefWidth="200"
+                                     styleClass="table-column-action">
+                            <cellValueFactory>
+                                <javafx.scene.control.cell.PropertyValueFactory property="action"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Description Column -->
+                        <TableColumn fx:id="descriptionColumn"
+                                     text="📝 Description"
+                                     prefWidth="350"
+                                     styleClass="table-column-description">
+                            <cellValueFactory>
+                                <javafx.scene.control.cell.PropertyValueFactory property="description"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Date Column with Icon -->
+                        <TableColumn fx:id="dateColumn"
+                                     text="🕐 Date &amp; Heure"
+                                     prefWidth="220"
+                                     styleClass="table-column-date">
+                            <cellValueFactory>
+                                <javafx.scene.control.cell.PropertyValueFactory property="date"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+
+                    <!-- Custom Empty State -->
+                    <placeholder>
+                        <VBox alignment="CENTER" spacing="20" styleClass="empty-state">
+                            <Label text="📜" styleClass="empty-icon"/>
+                            <Label text="Aucune action enregistrée" styleClass="empty-title"/>
+                            <Label text="L'historique des actions apparaîtra ici automatiquement"
+                                   styleClass="empty-subtitle"/>
+                        </VBox>
+                    </placeholder>
+
+                </TableView>
+
+                <!-- Pagination Bar -->
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+
+

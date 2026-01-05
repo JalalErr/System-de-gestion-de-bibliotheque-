@@ -1,21 +1,21 @@
 package com.usermanager.dao.impl;
 
 import com.usermanager.exception.DAOException;
-import com.usermanager.model.AdminModel;
-import com.usermanager.model.UserModel;
+import com.usermanager.model.ClientModel;
 import com.usermanager.util.DatabaseConnection;
 
 import java.sql.*;
 
-
-public class AdherantDAO {
+public class ClientDAOImpl {
 
     private final String Inserte_SQL = "INSERT INTO Adherants (Nom, Prenom, Email, Adress, Numero, Cin ) VALUES(?, ?, ?, ?, ?, ?) ";
+    private final String Delete_SQL = "DELETE FROM Adherants WHERE cin = ? AND nom = ?";
 
-    public UserModel save(UserModel user) {
+    public ClientModel save(ClientModel user) {
 
-        try ( Connection conn = DatabaseConnection.getInstance().getConnection();
-              PreparedStatement preparedStatement = conn.prepareStatement(Inserte_SQL, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(Inserte_SQL, Statement.RETURN_GENERATED_KEYS)) {
+
             System.out.println("Hello from Adherant DAO");
             setUserParameters(preparedStatement, user);
             System.out.println("Hello from Adherant DAO 2");
@@ -39,7 +39,27 @@ public class AdherantDAO {
         }
     }
 
-    private void setUserParameters(PreparedStatement preparedStatement, UserModel user) throws SQLException {
+
+    public boolean deletByCin(ClientModel user) {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(Delete_SQL)) {
+
+            preparedStatement.setString(1, user.getCin());
+            preparedStatement.setString(2, user.getNom());
+            int affectedRows = preparedStatement.executeUpdate();
+
+            System.out.println("Suppression client CIN: " + user.getCin() +
+                    ", Nom: " + user.getNom() +
+                    ", Lignes affectées: " + affectedRows);
+
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            throw new DAOException("Erreur lors de la suppression du client CIN: " +
+                    user.getCin() + " - " + e.getMessage(), e);
+        }
+    }
+    private void setUserParameters(PreparedStatement preparedStatement, ClientModel user) throws SQLException {
         preparedStatement.setString(1, user.getNom());
         preparedStatement.setString(2, user.getPrenom());
         preparedStatement.setString(3, user.getEmail());

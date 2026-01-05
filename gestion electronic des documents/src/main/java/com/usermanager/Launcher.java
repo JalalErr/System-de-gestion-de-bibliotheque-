@@ -18,9 +18,10 @@ public class Launcher extends Application{
 
         System.out.println("✓ Database connection successful");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/auth/LoginPage.fxml"));
 
-        Scene scene = new Scene(loader.load(), 600, 400);
+        Scene scene = new Scene(loader.
+                load(), 600, 700);
         //stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

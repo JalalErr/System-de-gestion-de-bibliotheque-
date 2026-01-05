@@ -2,6 +2,7 @@ package com.usermanager.service;
 
 import com.usermanager.dao.DAOFactory;
 import com.usermanager.dao.UserDAO;
+import com.usermanager.dao.impl.UserDAOImpl;
 import com.usermanager.exception.DuplicateDataException;
 import com.usermanager.model.UserModel;
 import com.usermanager.model.UserRole;
@@ -24,7 +25,9 @@ public class UserService {
     }
 
     public UserModel createUser(UserModel user) {
-        validateUser(user);
+        System.out.println("User Service");
+        //validateUser(user);
+        System.out.println("User Service after validation");
 
         if (userDAO.existsByUsername(user.getNom())) {
             throw new DuplicateDataException("Username already exists: " + user.getNom());
@@ -35,6 +38,29 @@ public class UserService {
         }
 
         return userDAO.save(user);
+    }
+
+    public  Optional<UserModel>  login(String email, String password) {
+        System.out.println("Hello from User Service");
+
+        return userDAO.authenticate(email, password);
+    }
+
+    public  Optional<UserModel>  authenticateUser(String username, String password) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new DAOException("Username is required");
+        }
+        if (password == null || password.trim().isEmpty()) {
+            throw new DAOException("Password is required");
+        }
+        return userDAO.authenticate(username, password);
+    }
+
+
+    public UserModel updateUser (UserModel user) {
+        System.out.println("Nouveau nom : " + user.getNom() +
+                " | " + "Nouveau Prenom : " + user.getPrenom());
+        return userDAO.update(user);
     }
 
 
@@ -63,16 +89,6 @@ public class UserService {
             return getAllUsers();
         }
         return userDAO.searchByName(keyword);
-    }
-
-    public boolean authenticateUser(String username, String password) {
-        if (username == null || username.trim().isEmpty()) {
-            throw new DAOException("Username is required");
-        }
-        if (password == null || password.trim().isEmpty()) {
-            throw new DAOException("Password is required");
-        }
-        return userDAO.authenticate(username, password);
     }
 
     public long getTotalUserCount() {

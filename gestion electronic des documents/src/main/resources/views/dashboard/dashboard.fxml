@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.6"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.DashboardController"
+            stylesheets="@../../css/dashboard-style.css"
+            styleClass="root-pane" prefWidth="1200" prefHeight="700">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml"/>
+    </left>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <center>
+        <VBox styleClass="main-container">
+
+            <!-- ================= HEADER WITH SEARCH ================= -->
+            <HBox styleClass="header-section" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="20" bottom="20" left="30" right="30"/>
+                </padding>
+
+                <Label text="Tableau de Bord" styleClass="header-title"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Search Bar -->
+                <HBox styleClass="search-container" alignment="CENTER_LEFT" spacing="10">
+                    <padding>
+                        <Insets top="8" bottom="8" left="15" right="15"/>
+                    </padding>
+                    <Label text="🔍" styleClass="search-icon"/>
+                    <TextField fx:id="searchField" promptText="Rechercher..." styleClass="search-input" prefWidth="250"/>
+                </HBox>
+            </HBox>
+
+            <!-- ================= CONTENT AREA ================= -->
+            <ScrollPane fitToWidth="true" styleClass="content-scroll" VBox.vgrow="ALWAYS">
+                <VBox styleClass="content-area" spacing="25">
+                    <padding>
+                        <Insets top="20" bottom="30" left="30" right="30"/>
+                    </padding>
+
+                    <!-- ================= STATS CARDS ================= -->
+                    <HBox spacing="20" alignment="CENTER_LEFT">
+                        <!-- Livres Card -->
+                        <VBox styleClass="stat-card" spacing="15" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets top="20" bottom="20" left="25" right="25"/>
+                            </padding>
+
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <StackPane styleClass="stat-icon-container books">
+                                    <Label text="📚" styleClass="stat-icon"/>
+                                </StackPane>
+                                <Label text="Livres disponibles" styleClass="stat-title"/>
+                            </HBox>
+
+                            <Label fx:id="lblLivreTotal" text="0" styleClass="stat-number"/>
+
+                            <HBox spacing="30">
+                                <VBox spacing="5">
+                                    <Label text="Empruntés" styleClass="stat-label-small"/>
+                                    <Label fx:id="lblLivreEmprunte" text="0" styleClass="stat-value-small"/>
+                                </VBox>
+                                <VBox spacing="5">
+                                    <Label text="Restants" styleClass="stat-label-small"/>
+                                    <Label fx:id="lblLivreRestant" text="0" styleClass="stat-value-small books-color"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <!-- PFE Card -->
+                        <VBox styleClass="stat-card" spacing="15" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets top="20" bottom="20" left="25" right="25"/>
+                            </padding>
+
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <StackPane styleClass="stat-icon-container pfe">
+                                    <Label text="🎓" styleClass="stat-icon"/>
+                                </StackPane>
+                                <Label text="PFE disponibles" styleClass="stat-title"/>
+                            </HBox>
+
+                            <Label fx:id="lblPfeTotal" text="0" styleClass="stat-number"/>
+
+                            <HBox spacing="30">
+                                <VBox spacing="5">
+                                    <Label text="Empruntés" styleClass="stat-label-small"/>
+                                    <Label fx:id="lblPfeEmprunte" text="0" styleClass="stat-value-small"/>
+                                </VBox>
+                                <VBox spacing="5">
+                                    <Label text="Restants" styleClass="stat-label-small"/>
+                                    <Label fx:id="lblPfeRestant" text="0" styleClass="stat-value-small pfe-color"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- ================= TABLE SECTION ================= -->
+                    <VBox styleClass="table-container" spacing="15">
+                        <TableView fx:id="table" styleClass="modern-table">
+                            <columns>
+                                <TableColumn text="N°" fx:id="colId" prefWidth="80" styleClass="table-column-center"/>
+                                <TableColumn text="Nom Adhérent" fx:id="colNom" prefWidth="200"/>
+                                <TableColumn text="Type" fx:id="colType" prefWidth="150" styleClass="table-column-center"/>
+                                <TableColumn text="Titre" fx:id="colTitre" prefWidth="300"/>
+                                <TableColumn text="Statut" fx:id="colStatut" prefWidth="150" styleClass="table-column-center"/>
+                            </columns>
+                            <placeholder>
+                                <VBox alignment="CENTER" spacing="10" styleClass="empty-placeholder">
+                                    <Label text="📋" styleClass="empty-icon"/>
+                                    <Label text="Aucun emprunt trouvé" styleClass="empty-text"/>
+                                    <Label text="Les emprunts apparaîtront ici" styleClass="empty-subtext"/>
+                                </VBox>
+                            </placeholder>
+                        </TableView>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

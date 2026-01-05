@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.usermanager.controller.DocumentController"
+            stylesheets="@../../css/add-document_style.css"
+            styleClass="root" prefWidth="1200" prefHeight="700">
+
+    <!-- Import Sidebar Component (Optional) -->
+    <left>
+        <fx:include source="../SidebarMenuAdmin.fxml" fx:id="sidebar"/>
+    </left>
+
+    <!-- Header Bar -->
+    <HBox styleClass="header" alignment="CENTER_RIGHT" spacing="15">
+        <HBox HBox.hgrow="ALWAYS"/>
+
+        <!-- Search Bar -->
+        <TextField fx:id="globalSearchField" promptText="Search"
+                   styleClass="search-field" prefWidth="400"/>
+    </HBox>
+
+
+    <!-- Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+            <VBox styleClass="main-content" spacing="20">
+                <padding>
+                    <Insets top="30" bottom="30" left="40" right="40"/>
+                </padding>
+
+                <!-- Back Button and Title -->
+                <VBox spacing="15">
+                    <Button fx:id="backButton" text="←" styleClass="back-button"/>
+
+                    <VBox spacing="5">
+                        <Label text="Nouvel Emprunt" styleClass="page-title"/>
+                        <Label text="Enregistrer un emprunt de livre ou rapport" styleClass="page-subtitle"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Form Card -->
+                <VBox styleClass="form-card" spacing="25" maxWidth="700">
+                    <padding>
+                        <Insets top="30" bottom="30" left="40" right="40"/>
+                    </padding>
+
+                    <!-- Card Header -->
+                    <VBox spacing="10" styleClass="card-header">
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Label text="📚" styleClass="card-icon"/>
+                            <VBox spacing="5">
+                                <Label text="Informations d'Emprunt" styleClass="card-title"/>
+                                <Label text="Remplissez tous les champs requis" styleClass="card-subtitle"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Type de Document -->
+                    <VBox spacing="8">
+                        <HBox spacing="2" alignment="CENTER_LEFT">
+                            <Label text="Type de Document" styleClass="field-label"/>
+                            <Text fill="red" text="*" styleClass="required-star"/>
+                        </HBox>
+
+                        <HBox styleClass="input-container">
+                            <Label text="📄" styleClass="input-icon"/>
+                            <ComboBox fx:id="typeComboBox" promptText="Sélectionnez le type"
+                                      styleClass="custom-combo" HBox.hgrow="ALWAYS">
+                                <items>
+                                    <javafx.collections.FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Livre"/>
+                                        <String fx:value="Rapport"/>
+                                    </javafx.collections.FXCollections>
+                                </items>
+                            </ComboBox>
+                        </HBox>
+
+                        <Label text="Choisissez entre Livre ou Rapport" styleClass="field-help"/>
+                    </VBox>
+
+                    <!-- Livre Form Fields -->
+                    <VBox fx:id="livreFormContainer" spacing="20" visible="false" managed="false">
+                        <!-- Titre -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="Titre" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="📖" styleClass="input-icon"/>
+                                <TextField fx:id="titreField" promptText="Entrez le titre du livre"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="Le titre complet du livre" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- Auteur -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="Auteur" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="👤" styleClass="input-icon"/>
+                                <TextField fx:id="auteurField" promptText="Entrez le nom de l'auteur"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="Le nom complet de l'auteur" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- ISBN -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="ISBN" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="#" styleClass="input-icon"/>
+                                <TextField fx:id="isbnField" promptText="Entrez l'ISBN du livre"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="L'identifiant unique du livre" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- Disponible -->
+                        <CheckBox fx:id="livreDisponibleCheck" text="Document disponible"
+                                  styleClass="custom-checkbox" selected="true"/>
+                    </VBox>
+
+                    <!-- Rapport Form Fields -->
+                    <VBox fx:id="rapportFormContainer" spacing="20" visible="false" managed="false">
+                        <!-- Nom Étudiant -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="Nom Étudiant" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="👤" styleClass="input-icon"/>
+                                <TextField fx:id="nomEtudiantField" promptText="Entrez le nom de l'étudiant"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="Le nom complet de l'étudiant" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- Nom Encadrant -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="Nom Encadrant" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="👤" styleClass="input-icon"/>
+                                <TextField fx:id="nomEncadrantField" promptText="Entrez le nom de l'encadrant"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="Le nom de l'encadrant du rapport" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- Sujet -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="Sujet" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="📄" styleClass="input-icon"/>
+                                <TextField fx:id="sujetField" promptText="Entrez le sujet du rapport"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="Le sujet principal du rapport" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- École -->
+                        <VBox spacing="8">
+                            <HBox spacing="2" alignment="CENTER_LEFT">
+                                <Label text="École" styleClass="field-label"/>
+                                <Text fill="red" text="*" styleClass="required-star"/>
+                            </HBox>
+                            <HBox styleClass="input-container">
+                                <Label text="📚" styleClass="input-icon"/>
+                                <TextField fx:id="ecoleField" promptText="Entrez le nom de l'école"
+                                           styleClass="custom-input" HBox.hgrow="ALWAYS"/>
+                            </HBox>
+                            <Label text="L'établissement d'origine" styleClass="field-help"/>
+                        </VBox>
+
+                        <!-- Disponible -->
+                        <CheckBox fx:id="rapportDisponibleCheck" text="Document disponible"
+                                  styleClass="custom-checkbox" selected="true"/>
+                    </VBox>
+
+                    <!-- Submit Button -->
+                    <Button fx:id="submitButton" text="Enregistrer l'emprunt"
+                            styleClass="submit-button" visible="false" managed="false">
+                        <VBox.margin>
+                            <Insets top="10"/>
+                        </VBox.margin>
+                    </Button>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

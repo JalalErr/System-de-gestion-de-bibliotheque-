@@ -2,7 +2,7 @@ package com.usermanager.model;
 
 public class UserModel {
 
-    private Integer id;
+    private int id;
     private String nom;
     private String prenom;
     private String email;
@@ -21,11 +21,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,7 +77,7 @@ public class UserModel {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
-                 ", role=" + role +
+                ", role=" + role +
                 '}';
     }
 }

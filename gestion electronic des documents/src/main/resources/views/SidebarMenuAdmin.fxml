@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 
-<!-- Composant réutilisable du menu Sidebar -->
+<!-- Composant réutilisable du menu Sidebar Amélioré -->
 <VBox xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.usermanager.controller.SideBarMenuController"
@@ -16,10 +16,33 @@
       prefWidth="280"
       fx:id="sidebarRoot">
 
+    <!-- Logo Section -->
+    <HBox styleClass="logo-section" alignment="CENTER_LEFT" spacing="12">
+        <padding>
+            <Insets top="20" bottom="20" left="20" right="20"/>
+        </padding>
+        <Label text="📚" styleClass="logo-icon"/>
+        <VBox>
+            <Label text="Bibliothèque" styleClass="logo-title"/>
+            <Label text="Management" styleClass="logo-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <!-- Divider -->
+    <Separator styleClass="section-divider">
+        <VBox.margin>
+            <Insets left="20" right="20" bottom="10"/>
+        </VBox.margin>
+    </Separator>
+
     <!-- User Profile Section -->
-    <VBox styleClass="profile-section" alignment="CENTER" spacing="10">
+    <VBox styleClass="profile-section" alignment="CENTER" spacing="12">
+        <padding>
+            <Insets top="15" bottom="20" left="20" right="20"/>
+        </padding>
+
         <StackPane styleClass="avatar-container">
-            <Circle radius="45" styleClass="avatar-circle"/>
+            <Circle radius="45" styleClass="avatar-background"/>
             <ImageView fx:id="avatarImage" fitWidth="85" fitHeight="85" preserveRatio="true">
                 <image>
                     <!-- <Image url="@images/user-avatar.png"/> -->
@@ -28,99 +51,185 @@
                     <Circle radius="42.5" centerX="42.5" centerY="42.5"/>
                 </clip>
             </ImageView>
+            <!-- Status Indicator -->
+            <Circle radius="8" styleClass="status-indicator" translateX="30" translateY="30"/>
         </StackPane>
-        <Label fx:id="nomlabel_" styleClass="profile-name"/>
-        <Label fx:id="rolelabel" text="Admin" styleClass="profile-email"/>
+
+        <VBox alignment="CENTER" spacing="4">
+            <Label fx:id="nomlabel_" text="Admin User" styleClass="profile-name"/>
+            <HBox spacing="6" alignment="CENTER">
+                <Label text="●" styleClass="role-badge-dot"/>
+                <Label fx:id="rolelabel" text="Administrateur" styleClass="profile-role"/>
+            </HBox>
+        </VBox>
     </VBox>
 
-    <!-- Navigation Menu -->
-    <VBox styleClass="nav-menu" spacing="5" VBox.vgrow="ALWAYS">
+    <!-- Divider -->
+    <Separator styleClass="section-divider">
+        <VBox.margin>
+            <Insets left="20" right="20" top="5" bottom="15"/>
+        </VBox.margin>
+    </Separator>
 
-        <!-- Dashboard Button -->
-        <Button fx:id="dashboardBtn" styleClass="nav-button" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="📊" styleClass="nav-icon"/>
-                    <Label text="Dashboard"/>
-                </HBox>
-            </graphic>
-        </Button>
+    <!-- Navigation Menu with ScrollPane -->
+    <ScrollPane fitToWidth="true" styleClass="nav-scroll" VBox.vgrow="ALWAYS">
+        <VBox styleClass="nav-menu" spacing="4">
+            <padding>
+                <Insets top="5" bottom="10" left="12" right="12"/>
+            </padding>
 
-        <!-- Profile Button -->
-        <Button fx:id="profileBtn" styleClass="nav-button" onAction="#goToProfile">
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="👤" styleClass="nav-icon"/>
-                    <Label text="Profile"/>
-                </HBox>
-            </graphic>
-        </Button>
+            <!-- Section: Principal -->
+            <Label text="PRINCIPAL" styleClass="nav-section-title">
+                <padding>
+                    <Insets left="8" top="5" bottom="5"/>
+                </padding>
+            </Label>
 
-        <!-- Gestion Adherants Button-->
-        <Button fx:id="adherantsBtn" styleClass="nav-button" onAction="#goToAddUser" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="👥" styleClass="nav-icon"/>
-                    <Label text="Gestion Adherants"/>
-                </HBox>
-            </graphic>
-        </Button>
+            <!-- Dashboard Button -->
+            <Button fx:id="dashboardBtn" styleClass="nav-button" onAction="#gotodashboard">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container">
+                            <Label text="📊" styleClass="nav-icon"/>
+                        </StackPane>
+                        <Label text="Dashboard" styleClass="nav-label"/>
+                    </HBox>
+                </graphic>
+            </Button>
 
+            <!-- Profile Button -->
+            <Button fx:id="profileBtn" styleClass="nav-button" onAction="#goToProfile">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container">
+                            <Label text="👤" styleClass="nav-icon"/>
+                        </StackPane>
+                        <Label text="Mon Profile" styleClass="nav-label"/>
+                    </HBox>
+                </graphic>
+            </Button>
 
-        <!-- Sanctions Button-->
-        <Button fx:id="sanctionsBtn" styleClass="nav-button" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="⚠️" styleClass="nav-icon"/>
-                    <Label text="Gestion Sanctions"/>
-                </HBox>
-            </graphic>
-        </Button>
+            <!-- Section: Gestion -->
+            <Label text="GESTION" styleClass="nav-section-title">
+                <padding>
+                    <Insets left="8" top="15" bottom="5"/>
+                </padding>
+            </Label>
 
-        <!-- Documents Button -->
-        <Button fx:id="empLivreBtn" styleClass="nav-button" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="📄" styleClass="nav-icon"/>
-                    <Label text="Ajouter un Documents"/>
-                </HBox>
-            </graphic>
-        </Button>
+            <!-- Gestion Adherants Button-->
+            <Button fx:id="adherantsBtn" styleClass="nav-button" onAction="#goToAddUser">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container">
+                            <Label text="👥" styleClass="nav-icon"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Adhérents" styleClass="nav-label"/>
+                            <Label text="Gérer les membres" styleClass="nav-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+            </Button>
 
-        <!-- Documents Button -->
-        <Button fx:id="empRaprtBtn" styleClass="nav-button" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="📄" styleClass="nav-icon"/>
-                    <Label text="Ajouter un Rapports"/>
-                </HBox>
-            </graphic>
-        </Button>
+            <!-- Sanctions Button-->
+            <Button fx:id="sanctionsBtn" styleClass="nav-button" onAction="#goToSanction">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container warning">
+                            <Label text="⚠️" styleClass="nav-icon"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Sanctions" styleClass="nav-label"/>
+                            <Label text="Infractions et pénalités" styleClass="nav-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+            </Button>
 
-        <!-- Settings Button
-        <Button fx:id="settingsBtn" styleClass="nav-button" >
-            <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="⚙️" styleClass="nav-icon"/>
-                    <Label text="Settings"/>
-                </HBox>
-            </graphic>
-        </Button>
-    -->
-        <!-- Spacer -->
-        <Region VBox.vgrow="ALWAYS"/>
+            <!-- Section: Documents -->
+            <Label text="DOCUMENTS" styleClass="nav-section-title">
+                <padding>
+                    <Insets left="8" top="15" bottom="5"/>
+                </padding>
+            </Label>
+
+            <!-- Emprunter Document Button -->
+            <Button fx:id="empLivreBtn" styleClass="nav-button" onAction="#goToEmprunt">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container primary">
+                            <Label text="📖" styleClass="nav-icon"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Emprunter" styleClass="nav-label"/>
+                            <Label text="Nouvel emprunt" styleClass="nav-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <!-- Ajouter Document Button -->
+            <Button fx:id="empRaprtBtn" styleClass="nav-button" onAction="#goToAddDocument">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container success">
+                            <Label text="➕" styleClass="nav-icon"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Ajouter Document" styleClass="nav-label"/>
+                            <Label text="Livre ou rapport" styleClass="nav-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <!-- Historique Button -->
+            <Button fx:id="settingsBtn" styleClass="nav-button" onAction="#goToHistory">
+                <graphic>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <StackPane styleClass="nav-icon-container">
+                            <Label text="📜" styleClass="nav-icon"/>
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Historique" styleClass="nav-label"/>
+                            <Label text="Consulter l'activité" styleClass="nav-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS" minHeight="20"/>
+        </VBox>
+    </ScrollPane>
+
+    <!-- Bottom Section -->
+    <VBox styleClass="bottom-section" spacing="10">
+        <padding>
+            <Insets top="15" bottom="20" left="12" right="12"/>
+        </padding>
+
+        <!-- Version Info -->
+        <HBox styleClass="version-info" alignment="CENTER" spacing="8">
+            <padding>
+                <Insets top="8" bottom="8" left="12" right="12"/>
+            </padding>
+            <Label text="ℹ️" styleClass="info-icon"/>
+            <VBox spacing="2">
+                <Label text="Version 1.0.0" styleClass="version-label"/>
+                <Label text="Dernière mise à jour" styleClass="version-sublabel"/>
+            </VBox>
+        </HBox>
 
         <!-- Logout Button -->
-        <!-- <Button fx:id="logoutBtn" styleClass="nav-button, logout-button" onAction="#handleLogout"> -->
-        <Button fx:id="logoutBtn" styleClass="nav-button, logout-button" onAction="#logout">
+        <Button fx:id="logoutBtn" styleClass="logout-button" onAction="#logout">
             <graphic>
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <Label text="🚪" styleClass="nav-icon"/>
-                    <Label text="Logout"/>
+                <HBox spacing="12" alignment="CENTER">
+                    <Label text="🚪" styleClass="logout-icon"/>
+                    <Label text="Déconnexion" styleClass="logout-label"/>
                 </HBox>
             </graphic>
         </Button>
-
     </VBox>
 
 </VBox>

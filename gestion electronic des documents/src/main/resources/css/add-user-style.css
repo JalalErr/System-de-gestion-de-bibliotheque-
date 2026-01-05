@@ -312,7 +312,8 @@
 }
 
 /* Focus sur le container parent */
-.input-with-icon:has(.form-input-icon:focused) {
+/*moif ici*/
+.input-with-icon:hover(.form-input-icon:focused) {
     -fx-border-color: #667eea;
     -fx-background-color: white;
     -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.2), 8, 0, 0, 0);
